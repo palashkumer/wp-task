@@ -11,13 +11,13 @@ function UserList()
     },[]);
 
  const getUserData= async()=>{
-    const reqData= await fetch("http://localhost/wp-task/api/user.php");
+    const reqData= await fetch("http://localhost/wp-task/api/index.php");
     const resData= await reqData.json();           
     setUserData(resData);
      } 
 
  const handleDelete= async(id)=>{
-   const res= await axios.delete("http://localhost/wp-task/api/user.php/"+id);
+   const res= await axios.delete("http://localhost/wp-task/api/index.php/"+id);
    setMessage(res.data.success);
    getUserData();   
  }

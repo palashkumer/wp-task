@@ -15,7 +15,7 @@ function EditUser()
 
     useEffect( ()=>{
         const userRowdata= async()=>{
-         const getUserdata= await fetch("http://localhost/wp-task/api/user.php/"+id);
+         const getUserdata= await fetch("http://localhost/wp-task/api/index.php/"+id);
          const resuserdata= await getUserdata.json();        
          setFormvalue(resuserdata);
         }
@@ -26,7 +26,7 @@ function EditUser()
          e.preventDefault();
          //console.log(formvalue);
          const formData= {id:id,username:formvalue.username, email:formvalue.email, status:formvalue.status}; 
-         const res= await axios.put("http://localhost/wp-task/api/user.php",formData);
+         const res= await axios.put("http://localhost/wp-task/api/index.php",formData);
          //let jsonres= res.data.json();        
            if(res.data.success)
            {
