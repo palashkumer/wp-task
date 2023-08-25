@@ -18,6 +18,7 @@ function AddUser()
         //  console.log(formvalue);
          const formData= {username:formvalue.username, email:formvalue.email, status:formvalue.status}; 
          const res= await axios.post("http://localhost/wp-task/api/index.php",formData);
+        //  const res= await axios.post("http://localhost:80/api/user/save",formData);
          //let jsonres= res.data.json();        
            if(res.data.success)
            {

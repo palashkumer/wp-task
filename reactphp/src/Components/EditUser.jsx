@@ -15,8 +15,8 @@ function EditUser()
 
     useEffect( ()=>{
         const userRowdata= async()=>{
-         const getUserdata= await fetch("http://localhost/wp-task/api/index.php/"+id);
-         const resuserdata= await getUserdata.json();        
+            const getUserdata= await fetch("http://localhost/wp-task/api/index.php/"+id);
+            const resuserdata= await getUserdata.json();        
          setFormvalue(resuserdata);
         }
         userRowdata();

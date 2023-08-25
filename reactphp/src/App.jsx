@@ -18,10 +18,6 @@ function App() {
       <Route path="/userlist" element= { <UserList/> } />
       <Route path="/adduser" element= { <AddUser/> } />
       <Route path="/edituser/:id" element= { <EditUser/> } />
-
-      {/* <Route path="/addproduct/" element= { <AddProduct/> } /> */}
-      {/* <Route path="/productlist/" element= { <ProductList/> } /> */}
-
       </Routes>
       <Footer/>    
  </div>

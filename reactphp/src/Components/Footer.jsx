@@ -8,7 +8,7 @@ function Footer()
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 mt-3">
-                        <p style={{textAlign: "center"}} className="text-white">Copyright @Palash Kumer</p>
+                        <p style={{textAlign: "center"}} className="text-white">Copyright @ Palash Kumer</p>
                     </div>
                 </div>
             </div>
