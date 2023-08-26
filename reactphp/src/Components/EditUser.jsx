@@ -42,7 +42,7 @@ function EditUser()
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 mt-4">
-                        <h5 className="mb-4">Adduser </h5> 
+                        <h5 className="mb-4">Edit User </h5> 
                         <p className="text-sucess"> { message }</p>                 
                          <form onSubmit={ handleSubmit}>
                             <div className="mb-3 row">

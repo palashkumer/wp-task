@@ -19,18 +19,16 @@ if (isset($path[4]) && is_numeric($path[4])) {
     echo json_encode($json_array['rowUserdata']);
 } else {
     $alluser = mysqli_query($db_conn, "SELECT * FROM tbl_user");
-    if (mysqli_num_rows($alluser) > 0) {
-        $json_array["userdata"] = array();
-        while ($row = mysqli_fetch_array($alluser)) {
-            $json_array["userdata"][] = array(
-                "id" => $row['userid'],
-                "username" => $row["username"],
-                "email" => $row["usermail"],
-                "status" => $row["status"]
-            );
-        }
-        echo json_encode($json_array["userdata"]);
-    } else {
-        echo json_encode(["result" => "No User Data Found"]);
+    $json_array["userdata"] = array(); // Initialize an empty array
+
+    while ($row = mysqli_fetch_array($alluser)) {
+        $json_array["userdata"][] = array(
+            "id" => $row['userid'],
+            "username" => $row["username"],
+            "email" => $row["usermail"],
+            "status" => $row["status"]
+        );
     }
+
+    echo json_encode($json_array["userdata"]);
 }
