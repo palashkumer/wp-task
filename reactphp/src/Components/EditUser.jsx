@@ -12,10 +12,9 @@ function EditUser()
     const handleInput =(e)=>{
         setFormvalue({...formvalue, [e.target.name]:e.target.value});
     }
-
     useEffect( ()=>{
         const userRowdata= async()=>{
-            const getUserdata= await fetch("http://localhost/wp-task/api/index.php/"+id);
+            const getUserdata= await fetch(`http://localhost/wp-task/api/index.php?id=${id}`);
             const resuserdata= await getUserdata.json();        
          setFormvalue(resuserdata);
         }
@@ -27,7 +26,7 @@ function EditUser()
          //console.log(formvalue);
          const formData= {id:id,username:formvalue.username, email:formvalue.email, status:formvalue.status}; 
          const res= await axios.put("http://localhost/wp-task/api/index.php",formData);
-         //let jsonres= res.data.json();        
+         //let jsonres= res.data.json();
            if(res.data.success)
            {
             setMessage(res.data.success);
@@ -77,7 +76,6 @@ function EditUser()
                             </div>
 
                          </form>
-      
                     </div>
                 </div>
             </div>

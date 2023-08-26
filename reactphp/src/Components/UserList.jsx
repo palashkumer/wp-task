@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function UserList() {
     const [userData, setUserData] = useState([]);
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         getUserData();
@@ -12,24 +12,29 @@ function UserList() {
 
     const getUserData = async () => {
         try {
-            const reqData = await fetch("http://localhost/wp-task/api/index.php");
-            const resData = await reqData.json();
-            setUserData(resData);
+            const response = await fetch("http://localhost/wp-task/api/index.php");
+            const data = await response.json();
+            // If 'result' is 'No User Data Found', set userData as an empty array
+            if (data.result === 'No User Data Found') {
+                setUserData([]);
+            } else {
+                // Otherwise, set userData to the data array
+                setUserData(data);
+            }
         } catch (error) {
-            console.error("Error fetching user data:", error);
+            console.error("Error fetching data:", error);
         }
-    };
+    }
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost/wp-task/api/index.php/${id}`);
-            setMessage(res.data.success);
+            const response = await axios.delete(`http://localhost/wp-task/api/index.php/${id}`);
+            setMessage(response.data.success);
             getUserData();
         } catch (error) {
             console.error("Error deleting user:", error);
-            setMessage("Failed to delete user.");
         }
-    };
+    }
 
     return (
         <React.Fragment>
@@ -37,11 +42,11 @@ function UserList() {
                 <div className="row">
                     <div className="col-md-10 mt-4">
                         <h5 className="mb-4">User List</h5>
-                        <p className="text-danger">{message}</p>
-                        <div>
-                            {userData.length === 0 ? (
-                                <p>No data to display</p>
-                            ) : (
+                        {userData.length === 0 ? (
+                            <p>Sorry, nothing to show.</p>
+                        ) : (
+                            <React.Fragment>
+                                <p className="text-danger">{message}</p>
                                 <table className="table table-bordered">
                                     <thead>
                                         <tr>
@@ -58,21 +63,17 @@ function UserList() {
                                                 <td>{uData.id}</td>
                                                 <td>{uData.username}</td>
                                                 <td>{uData.email}</td>
-                                                <td>{uData.status === 1 ? "Active" : "Inactive"}</td>
+                                                <td>{uData.status === "1" ? "Active" : "Inactive"}</td>
                                                 <td>
-                                                    <Link to={`/edituser/${uData.id}`} className="btn btn-success mx-2">
-                                                        Edit
-                                                    </Link>
-                                                    <button className="btn btn-danger" onClick={() => handleDelete(uData.id)}>
-                                                        Delete
-                                                    </button>
+                                                    <Link to={"/edituser/" + uData.id} className="btn btn-success mx-2">Edit</Link>
+                                                    <button className="btn btn-danger" onClick={() => handleDelete(uData.id)}>Delete</button>
                                                 </td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
-                            )}
-                        </div>
+                            </React.Fragment>
+                        )}
                     </div>
                 </div>
             </div>
