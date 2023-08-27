@@ -2,8 +2,7 @@
 require 'Db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-    $path = explode('/', $_SERVER["REQUEST_URI"]);
-    $userid = isset($path[4]) ? $path[4] : null;
+    $userid = isset($_GET['id']) ? $_GET['id'] : null;
 
     if ($userid !== null && is_numeric($userid)) {
         // Delete the user record from the database

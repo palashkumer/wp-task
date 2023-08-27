@@ -28,14 +28,14 @@ function UserList() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost/wp-task/api/index.php/${id}`);
+            const response = await axios.delete(`http://localhost/wp-task/api/index.php?id=${id}`);
             setMessage(response.data.success);
             getUserData();
         } catch (error) {
             console.error("Error deleting user:", error);
         }
     }
-
+    
     return (
         <React.Fragment>
             <div className="container">
@@ -82,3 +82,5 @@ function UserList() {
 }
 
 export default UserList;
+
+
